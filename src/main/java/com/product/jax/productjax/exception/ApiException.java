@@ -1,23 +1,11 @@
 package com.product.jax.productjax.exception;
 
-
-
-
 public class ApiException {
-
-    private int status;
     private String message;
+    private int status;
 
-    public ApiException(int status, String message) {
-        this.status = status;
+    public ApiException(String message, int status) {
         this.message = message;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -27,5 +15,13 @@ public class ApiException {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

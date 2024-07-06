@@ -26,7 +26,9 @@ public class ProductRepoImpl implements ProductRepo {
     public void update(int id, Product product) {
         Product existingProduct = findById(id);
         if (existingProduct != null) {
-            products.set(products.indexOf(existingProduct), product);
+           if (id == existingProduct.getId()) {
+               products.set(products.indexOf(existingProduct), product);
+           }
         } else {
             throw new ProductException("Product with id " + id + " not found");
         }
@@ -55,6 +57,6 @@ public class ProductRepoImpl implements ProductRepo {
         return products.stream()
                 .filter(product -> product.getId() == id)
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new ProductException("Product with id " + id + " not found"));
     }
 }

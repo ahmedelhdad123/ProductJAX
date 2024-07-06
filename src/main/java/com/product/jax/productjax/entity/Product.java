@@ -5,6 +5,7 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 
 public class Product {
@@ -16,14 +17,14 @@ public class Product {
     @NotBlank
     private String productName;
 
-    @PositiveOrZero
+    @Positive
     private int price;
 
     @NotBlank
     @Lob
     private String description;
 
-    @PositiveOrZero
+    @Positive
     private int quantity;
 
     public Product() {

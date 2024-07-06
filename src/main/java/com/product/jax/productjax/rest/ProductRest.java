@@ -3,6 +3,7 @@ package com.product.jax.productjax.rest;
 import com.product.jax.productjax.entity.Product;
 import com.product.jax.productjax.service.ProductService;
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -35,12 +36,12 @@ public class ProductRest {
     @Path("add")
     public Response addProduct(Product product) {
         productService.add(product);
-        return Response.status(Response.Status.CREATED).entity(product).build();
+       return Response.status(Response.Status.CREATED).entity(product).build();
     }
 
     @PUT
     @Path("update/{id}")
-    public Response updateProduct(@PathParam("id") int id, Product product) {
+    public Response updateProduct(@PathParam("id") int id,@Valid Product product) {
         productService.update(id, product);
         return Response.ok(product).build();
     }
