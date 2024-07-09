@@ -19,42 +19,40 @@ public class ProductRest {
     private ProductService productService;
 
     @GET
-    @Path("all")
     public Response getProducts() {
         List<Product> products = productService.findAll();
         return Response.ok(products).build();
     }
 
     @GET
-    @Path("findById/{id}")
+    @Path("/{id}")
     public Response getProductById(@PathParam("id") Integer id) {
         Product product = productService.findById(id);
         return Response.ok(product).build();
     }
 
     @POST
-    @Path("add")
-    public Response addProduct(Product product) {
+    public Response addProduct(@Valid Product product) {
         productService.add(product);
        return Response.status(Response.Status.CREATED).entity(product).build();
     }
 
     @PUT
-    @Path("update/{id}")
+    @Path("/{id}")
     public Response updateProduct(@PathParam("id") int id,@Valid Product product) {
         productService.update(id, product);
         return Response.ok(product).build();
     }
 
     @DELETE
-    @Path("delete/{id}")
+    @Path("/{id}")
     public Response deleteProduct(@PathParam("id") int id) {
         productService.delete(id);
         return Response.ok().build();
     }
 
     @GET
-    @Path("findByName/{name}")
+    @Path("/{name}")
     public Response getProductByName(@PathParam("name") String name) {
         Product product = productService.findByName(name);
         return Response.ok(product).build();
